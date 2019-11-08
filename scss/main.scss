@@ -3,11 +3,14 @@
 // Define fonts
 $roboto: 'Roboto', sans-serif;
 
-// Define breakpoints
+// Define breakpoints sizes
 $break-small:   600px;
 $break-middle:  601px;
 $break-large:   992px;
 $break-xlarge:  1200px;
+
+// Define column max
+$column-max: 12;
 
 // Define color and opacity default
 $color-black: #000000;
@@ -31,12 +34,24 @@ $opacity: 0.87;
 }
 
 @mixin large {
-    @media only screen and (max-width: $break-large) { @content };
+    @media only screen 
+        and (min-width: $break-large) 
+        and (max-width: $break-xlarge - 1px) { @content };
 }
 
 @mixin xlarge {
     @media only screen 
-        and (max-width: $break-xlarge) { @content };
+        and (min-width: $break-xlarge) { @content };
+}
+
+// Breakpoints 
+@mixin breakpoints($measures) {
+
+    @for $i from 1 through $column-max {
+        .#{$measures}-#{$i}  {
+            flex-basis: (100 / ($column-max / $i)) * 1%;
+        }
+    }
 }
 
 // Define classes
@@ -45,22 +60,61 @@ $opacity: 0.87;
 }
 
 .container {
-    font-size: 10px;
+    font-size: 16px;
     color: rgba($color: $color-black, $alpha: $opacity);
+    margin: 0 auto;
 
     @include small {
+        max-width: $break-small;
         width: 90%;
     }
 
     @include middle {
+        max-width: $break-middle;
         width: 85%;
     }
 
     @include large {
+        max-width: $break-large;
         width: 70%;
     }
 
     @include xlarge {
+        max-width: $break-xlarge;
         width: 70%;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.row .col {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 1px;
+}
+
+
+// Define breakpoints to screen 
+
+.row .col {
+    @include small {
+        @include breakpoints('sm');
+    }
+
+    @include middle {
+        @include breakpoints('md');
+    }
+
+    @include large {
+        @include breakpoints('lg')
+    }
+
+    @include xlarge {
+        @include breakpoints('xlg');
     }
 }
