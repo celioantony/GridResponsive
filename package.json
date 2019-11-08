@@ -1,0 +1,17 @@
+{
+    "name": "grid-responsive",
+    "version": "1.0.0",
+    "description": "Grid Responsive.",
+    "main": "index.js",
+    "dependencies": {
+        "node-sass": "^4.13.0",
+        "nodemon": "^1.19.4"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "build-css": "node-sass --include-path scss scss/main.scss public/css/main.css",
+        "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    },
+    "author": "Célio Antony",
+    "license": "MIT"
+}
