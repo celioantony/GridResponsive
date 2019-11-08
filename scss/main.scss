@@ -9,11 +9,17 @@ $break-middle:  601px;
 $break-large:   992px;
 $break-xlarge:  1200px;
 
+// Define color and opacity default
+$color-black: #000000;
+$opacity: 0.87;
+
 
 @mixin RobotoFont {
     font-family: $roboto;
 }
 
+
+// Define media queries
 @mixin small {
     @media only screen and (max-width: $break-small) { @content };
 }
@@ -31,4 +37,30 @@ $break-xlarge:  1200px;
 @mixin xlarge {
     @media only screen 
         and (max-width: $break-xlarge) { @content };
+}
+
+// Define classes
+* {
+    @include RobotoFont;
+}
+
+.container {
+    font-size: 10px;
+    color: rgba($color: $color-black, $alpha: $opacity);
+
+    @include small {
+        width: 90%;
+    }
+
+    @include middle {
+        width: 85%;
+    }
+
+    @include large {
+        width: 70%;
+    }
+
+    @include xlarge {
+        width: 70%;
+    }
 }
