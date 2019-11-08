@@ -48,8 +48,11 @@ $opacity: 0.87;
 @mixin breakpoints($measures) {
 
     @for $i from 1 through $column-max {
-        .#{$measures}-#{$i}  {
+        .col.#{$measures}-#{$i}  {
             flex-basis: (100 / ($column-max / $i)) * 1%;
+            margin-left: auto;
+            left: auto;
+            right: auto;
         }
     }
 }
@@ -57,6 +60,10 @@ $opacity: 0.87;
 // Define classes
 * {
     @include RobotoFont;
+}
+
+html, body {
+    display: block;
 }
 
 .container {
@@ -89,6 +96,9 @@ $opacity: 0.87;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
 }
 
 // Define breakpoints to screen 
@@ -98,21 +108,22 @@ $opacity: 0.87;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     min-height: 1px;
-    padding: 10px;
+    padding: 0 0.2rem;
+}
 
-    @include small {
-        @include breakpoints('sm');
-    }
 
-    @include middle {
-        @include breakpoints('md');
-    }
+@include small {
+    @include breakpoints('sm');
+}
 
-    @include large {
-        @include breakpoints('lg')
-    }
+@include middle {
+    @include breakpoints('md');
+}
 
-    @include xlarge {
-        @include breakpoints('xlg');
-    }
+@include large {
+    @include breakpoints('lg')
+}
+
+@include xlarge {
+    @include breakpoints('xlg');
 }
