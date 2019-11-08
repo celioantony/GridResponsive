@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+// Define fonts
+$roboto: 'Roboto', sans-serif;
+
+// Define breakpoints
+$break-small:   600px;
+$break-middle:  601px;
+$break-large:   992px;
+$break-xlarge:  1200px;
+
+
+@mixin RobotoFont {
+    font-family: $roboto;
+}
+
+@mixin small {
+    @media only screen and (max-width: $break-small) { @content };
+}
+
+@mixin middle {
+    @media only screen 
+        and (min-width: $break-middle) 
+        and (max-width: $break-large) { @content };
+}
+
+@mixin large {
+    @media only screen and (max-width: $break-large) { @content };
+}
+
+@mixin xlarge {
+    @media only screen 
+        and (max-width: $break-xlarge) { @content };
+}
