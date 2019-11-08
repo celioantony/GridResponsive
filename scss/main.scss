@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+// Define fonts
+$roboto: 'Roboto', sans-serif;
+
+// Define breakpoints sizes
+$break-small:   600px;
+$break-middle:  601px;
+$break-large:   992px;
+$break-xlarge:  1200px;
+
+// Define column max
+$column-max: 12;
+
+// Define color and opacity default
+$color-black: #000000;
+$opacity: 0.87;
+
+
+@mixin RobotoFont {
+    font-family: $roboto;
+}
+
+
+// Define media queries
+@mixin small {
+    @media only screen and (max-width: $break-small) { @content };
+}
+
+@mixin middle {
+    @media only screen 
+        and (min-width: $break-middle) 
+        and (max-width: $break-large) { @content };
+}
+
+@mixin large {
+    @media only screen 
+        and (min-width: $break-large) 
+        and (max-width: $break-xlarge - 1px) { @content };
+}
+
+@mixin xlarge {
+    @media only screen 
+        and (min-width: $break-xlarge) { @content };
+}
+
+// Breakpoints 
+@mixin breakpoints($measures) {
+
+    @for $i from 1 through $column-max {
+        .col.#{$measures}-#{$i}  {
+            flex-basis: (100 / ($column-max / $i)) * 1%;
+            margin-left: auto;
+            left: auto;
+            right: auto;
+        }
+    }
+}
+
+// Define classes
+* {
+    @include RobotoFont;
+}
+
+html, body {
+    display: block;
+}
+
+.container {
+    font-size: 16px;
+    color: rgba($color: $color-black, $alpha: $opacity);
+    margin: 0 auto;
+
+    @include small {
+        max-width: $break-small;
+        width: 90%;
+    }
+
+    @include middle {
+        max-width: $break-middle;
+        width: 85%;
+    }
+
+    @include large {
+        max-width: $break-large;
+        width: 70%;
+    }
+
+    @include xlarge {
+        max-width: $break-xlarge;
+        width: 70%;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+// Define breakpoints to screen 
+
+.row .col {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 1px;
+    padding: 0 0.2rem;
+}
+
+
+@include small {
+    @include breakpoints('sm');
+}
+
+@include middle {
+    @include breakpoints('md');
+}
+
+@include large {
+    @include breakpoints('lg')
+}
+
+@include xlarge {
+    @include breakpoints('xlg');
+}
