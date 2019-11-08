@@ -1,6 +1,6 @@
 # Grid-Responsive
 
-Grid-Responsive is a little CSS implemented using SASS of form dynamic. 
+Grid-Responsive is a little CSS implemented using SASS of form dynamic and is made based on the framework [Materializecss Grid](https://materializecss.com/grid.html).
 This CSS implement containers, rows, and cols to devices with screens small, middle, large and extra large.
 
 ## Install dev dependencies
